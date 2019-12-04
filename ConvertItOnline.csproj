@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0-preview3.19551.4" />
+      <Reference Include="Convert_em">
+    <HintPath>Convert_em.dll</HintPath>
+  </Reference>
+  </ItemGroup>
+
+</Project>
