@@ -20,7 +20,7 @@ namespace ConvertItOnline
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddRazorPages();
+            services.AddRouting();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,9 +38,14 @@ namespace ConvertItOnline
             {
                 endpoints.MapGet("/", async context =>
                  {
-                     await context.Response.WriteAsync(File.ReadAllText(@"src\Home.html"));
+                     await context.Response.WriteAsync(@"Loading ...");
+                     context.Response.Redirect("/index.html", true);
                  });
-                //endpoints.MapRazorPages();
+                endpoints.MapGet("/text", async context =>
+                {
+                    await context.Response.WriteAsync(File.ReadAllText("./text.txt"));
+                });
+                //endpoints.MapRazorPages();*/
                 endpoints.MapPost("/Process", async context =>
                 {
                     await context.Response.WriteAsync("");
