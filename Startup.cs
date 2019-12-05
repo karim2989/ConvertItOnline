@@ -36,10 +36,10 @@ namespace ConvertItOnline
 
             app.UseEndpoints(endpoints =>
             {
-                /*endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/", async context =>
                  {
                      context.Response.Redirect("/index.html", true);
-                 });*/
+                 });
                 endpoints.MapPost("/Process", async context =>
                 {
                     await context.Response.WriteAsync("");
