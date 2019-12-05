@@ -75,30 +75,3 @@
         margin: 50px 20%;
     }
 </style>
-<!--<button onclick="Send()">Go</button>
-
-<script>
-    function Send() {
-        var xhr = new XMLHttpRequest();
-        var reader = new FileReader();
-        xhr.open("POST", "/Process", true);
-
-        var files = document.getElementById('userFile').files;
-        xhr.setRequestHeader("img0",files[0])
-
-        var message = reader.readAsText(files[0])
-
-        xhr.send(message)
-        console.log(message);
-    }
-    function CreateMessage(file0, file1, file2) {
-        var buffer = null
-        buffer += file0.size;
-        buffer += file1.size;
-        buffer += file2.size;
-        buffer += file0;
-        buffer += file1;
-        buffer += file2;
-        return buffer
-    }
-</script>-->
