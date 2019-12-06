@@ -33,7 +33,6 @@ namespace ConvertItOnline
             var today = DateTime.Today;
             if (dailyReports.Count == 0 || CurrentReport.Day != today)
             {
-                System.IO.File.AppendAllText("OuputLog.txt", "Stats :: New day" + DateTime.Now);
                 dailyReports.Add(new DailyReport() { Day = today });
             }
         }
