@@ -23,8 +23,9 @@ namespace ConvertItOnline
                 process.images = new Bitmap[3];
                 for (int i = 0; i < 3; i++)
                 {
-                    var fs =req.Form.Files[i].OpenReadStream();//fs the stream of the image
+                    var fs = req.Form.Files[i].OpenReadStream();//fs the stream of the image
                     process.images[i] = new Bitmap(fs);
+                    fs.Close();
                 }
 
                 process.doCarveShape();
@@ -38,7 +39,9 @@ namespace ConvertItOnline
                 process.doCentralizeMesh();
                 process.doFlipMesh(Cords3.one);
 
-                string operationName = "ConverItOnlineOperation" + RNG.Next();
+                await res.WriteAsync(generateHtml(process.mesh.Serialize()));
+
+                /*string operationName = "ConverItOnlineOperation" + RNG.Next();
                 string OperationFolderPath = Directory.CreateDirectory(Path.GetTempPath() + operationName).FullName;
                 process.path = OperationFolderPath;
                 process.doSaveAsWavefont();
@@ -48,12 +51,13 @@ namespace ConvertItOnline
                 StatsController.RegisterProcessComplete();
                 res.Headers.Add("Content-Type", "application/zip");
                 res.Headers.Add("content-disposition", "attachment; filename= GeneratedMesh.zip");
-                await res.SendFileAsync(OperationFolderPath + ".zip");
+                File.AppendAllText("./OutputLog.txt", DateTime.Now.ToString() + " " + operationName + "\n");
+                await res.SendFileAsync(OperationFolderPath + ".zip");*/
             }
             catch (Exception e)
             {
                 StatsController.RegisterProcessFailed();
-                await res.WriteAsync("Process failed" + e.Message);
+                await res.WriteAsync("Process failed\n" + e.Message);
             }
         }
         private static string generateHtml((string waveFont, string mtl) data)
