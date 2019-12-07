@@ -23,7 +23,8 @@ namespace ConvertItOnline
                 process.images = new Bitmap[3];
                 for (int i = 0; i < 3; i++)
                 {
-                    process.images[i] = new Bitmap(req.Form.Files[i].OpenReadStream());
+                    var fs =req.Form.Files[i].OpenReadStream();//fs the stream of the image
+                    process.images[i] = new Bitmap(fs);
                 }
 
                 process.doCarveShape();
@@ -52,7 +53,7 @@ namespace ConvertItOnline
             catch (Exception e)
             {
                 StatsController.RegisterProcessFailed();
-                await res.WriteAsync("Process failed" + e);
+                await res.WriteAsync("Process failed" + e.Message);
             }
         }
         private static string generateHtml((string waveFont, string mtl) data)
