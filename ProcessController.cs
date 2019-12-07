@@ -39,9 +39,9 @@ namespace ConvertItOnline
                 process.doCentralizeMesh();
                 process.doFlipMesh(Cords3.one);
 
-                await res.WriteAsync(generateHtml(process.mesh.Serialize()));
+                //await res.WriteAsync(generateHtml(process.mesh.Serialize()));
 
-                /*string operationName = "ConverItOnlineOperation" + RNG.Next();
+                string operationName = "ConverItOnlineOperation" + RNG.Next();
                 string OperationFolderPath = Directory.CreateDirectory(Path.GetTempPath() + operationName).FullName;
                 process.path = OperationFolderPath;
                 process.doSaveAsWavefont();
@@ -52,7 +52,7 @@ namespace ConvertItOnline
                 res.Headers.Add("Content-Type", "application/zip");
                 res.Headers.Add("content-disposition", "attachment; filename= GeneratedMesh.zip");
                 File.AppendAllText("./OutputLog.txt", DateTime.Now.ToString() + " " + operationName + "\n");
-                await res.SendFileAsync(OperationFolderPath + ".zip");*/
+                await res.SendFileAsync(OperationFolderPath + ".zip");
             }
             catch (Exception e)
             {
