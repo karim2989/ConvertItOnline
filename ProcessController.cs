@@ -52,7 +52,11 @@ namespace ConvertItOnline
                 res.Headers.Add("Content-Type", "application/zip");
                 res.Headers.Add("content-disposition", "attachment; filename= GeneratedMesh.zip");
                 File.AppendAllText("./OutputLog.txt", DateTime.Now.ToString() + " " + operationName + "\n");
+
                 await res.SendFileAsync(OperationFolderPath + ".zip");
+
+                Directory.Delete(OperationFolderPath);
+                File.Delete(OperationFolderPath + ".zip");
             }
             catch (Exception e)
             {
